@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>刘镕硕的博客 - 文章</title>
+        <script>
+function GetRequest() {
+    const url = location.search;
+    let theRequest = new Object();
+    if (url.indexOf("?") != -1) {
+        let str = url.substr(1);
+        strs = str.split("&");
+        for(let i = 0; i < strs.length; i ++) {
+           theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+        }
+    }
+   return theRequest;
+}
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    </head>
+    <body>
+        <div id="main"></div>
+        <script>
+let ages = GetRequest();
+var content = document.getElementById("main");
+if (ages.length === 0){
+    content.innerHTML = "<h1>hello</h1>";
+}else{
+    try{
+        var id = ages["topic_id"];
+        
+        var httpRequest = new XMLHttpRequest();
+        var url = "https://api.github.com/repos/lrsgzs/blog/contents/topics"
+        httpRequest.withCredentials=true;
+        httpRequest.open('GET', url, true);
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+            var res = httpRequest.responseText;
+            let json = JSON.parse(res);
+            consoel.log(json)
+        }
+        };
+    }catch{
+        content.innerHTML = "<h1>hello</h1>";
+    }
+}
+// document.getElementById('content').innerHTML =
+// marked.parse('# Marked in the browser\n\nRendered by **marked**.');
+        </script>
+    </body>
+</html>
