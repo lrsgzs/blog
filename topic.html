@@ -24,12 +24,14 @@ function GetRequest() {
         <script>
 let ages = GetRequest();
 var content = document.getElementById("main");
+var print = console.log
 if (ages.length === 0){
     content.innerHTML = "<h1>hello</h1>";
+    print("no")
 }else{
     try{
         var id = ages["topic_id"];
-        
+        print("topic")
         var httpRequest = new XMLHttpRequest();
         var url = "https://api.github.com/repos/lrsgzs/blog/contents/topics"
         httpRequest.withCredentials=true;
@@ -39,9 +41,10 @@ if (ages.length === 0){
             var res = httpRequest.responseText;
             let json = JSON.parse(res);
             consoel.log(json)
-        }
+            }
         };
     }catch{
+        print("cat")
         content.innerHTML = "<h1>hello</h1>";
     }
 }
