@@ -37,7 +37,7 @@ if (ages.length === 0){
         httpRequest.withCredentials=true;
         httpRequest.open('GET', url, true);
         httpRequest.onreadystatechange = function () {
-            if (httpRequest.readyState == 4 && httpRequest.status == 200 %% httpRequest.status == 304) {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200 && httpRequest.status == 304) {
                 var res = httpRequest.responseText;
                 let json = JSON.parse(res);
                 consoel.log(json)
