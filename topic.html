@@ -31,6 +31,8 @@ var haha = function(data){
 
     </head>
     <body>
+        <span>刘镕硕的博客</span> | <span><a href="/">主页</a></span> | <span><a href="/topic/index.html">文章</a></span>
+        <hr width="100%" align="left">
         <div id="main"></div>
         <script>
 function getDecode(str){
@@ -47,7 +49,7 @@ try{
     let id = ages["id"]
     var idi = parseInt(id)
     if (isNaN(idi)){
-        content.innerHTML = "<h1>405</h1>"
+        content.innerHTML = '<a href="/topic/index.html">这个文章表正在制作，点我来到另一个文章表</a>'
     }else{
         if (idi <= sm){
             url = json["data"][idi - 1]["_links"]["self"] + "&callback=showwz"
