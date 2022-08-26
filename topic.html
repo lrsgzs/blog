@@ -25,7 +25,10 @@ var haha = function(data){
 }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.6.0/languages/python.min.js"></script>
+        <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.6.0/styles/base16/monokai.min.css" rel="stylesheet">
+
 
         <script src="https://api.github.com/repos/lrsgzs/blog_topics/contents/topics?callback=haha"></script>
 
@@ -51,9 +54,10 @@ try{
     if (isNaN(idi)){
         var innetext = "<p>一共有" + String(sm) + "篇文章</p>";
         for (var i=0; i < sm; i++){
-            innetext = innetext + '<a href="/topic.html?id=' + String(i + 1) + '">第' + String(i+1) + '篇文章</a><br>'
+            innetext = innetext + '<a href="/topic.html?id=' + String(i + 1) + '">第' + String(i+1) + '篇文章</a><br>';
         }
-        content.innerHTML = innetext
+        content.innerHTML = innetext;
+        hljs.initHighlightingOnLoad();
     }else{
         if (idi <= sm){
             url = json["data"][idi - 1]["_links"]["self"] + "&callback=showwz"
