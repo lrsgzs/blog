@@ -51,7 +51,7 @@ try{
     if (isNaN(idi)){
         var innetext = "<p>一共有" + String(sm) + "篇文章</p>";
         for (var i=0; i < sm; i++){
-            innetext = innetext + '<a href="/topic.html?id=' + String(i + 1) + '">第' + String(i+1) + '篇文章：</a>'
+            innetext = innetext + '<a href="/topic.html?id=' + String(i + 1) + '">第' + String(i+1) + '篇文章：</a><br>'
         }
         content.innerHTML = innetext
     }else{
