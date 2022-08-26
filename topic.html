@@ -33,6 +33,14 @@ var haha = function(data){
     <body>
         <div id="main"></div>
         <script>
+function getDecode(str){
+    return decodeURIComponent(atob(str).split('').map(function (c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+}
+var showwz = function(data){
+    document.getElementById('main').innerHTML = marked.parse(getDecode(data["data"]["content"]).replaceAll("\r", "")); 
+}
 let ages = GetRequest();
 var content = document.getElementById("main");
 try{
@@ -42,7 +50,13 @@ try{
         content.innerHTML = "<h1>405</h1>"
     }else{
         if (idi <= sm){
-            url = json["data"][idi - 1]["_links"]["self"]
+            url = json["data"][idi - 1]["_links"]["self"] + "callback=showwz"
+            var script_dom = document.createElement('script');
+            script_dom.src = url;
+            script_dom.language = 'javascript';
+            script_dom.type = 'text/javascript';
+            var head = document.getElementsByTagName('head').item(0);//这个是往本页面动态加载js脚本
+            head.appendChild(script_dom);
             console.log(url)
         }else{
             content.innerHTML = "<h1>404</h1>"
