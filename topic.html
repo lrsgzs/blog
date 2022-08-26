@@ -4,6 +4,8 @@
         <meta charset="utf-8"/>
         <title>刘镕硕的博客 - 文章</title>
         <script>
+var sm;
+var json;
 function GetRequest() {
     const url = location.search;
     let theRequest = new Object();
@@ -18,8 +20,8 @@ function GetRequest() {
 }
 var haha = function(data){
     console.log(data);
-    var json = data;
-    var sm = json["data"].length
+    json = data;
+    sm = json["data"].length
 }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
