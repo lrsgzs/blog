@@ -32,18 +32,18 @@ if (ages.length === 0){
     try{
         var id = ages["topic_id"];
         print("topic")
-        var httpRequest = new XMLHttpRequest();
-        var url = "https://api.github.com/repos/lrsgzs/blog/contents/topics"
-        httpRequest.withCredentials=true;
-        httpRequest.open('GET', url, true);
-        httpRequest.onreadystatechange = function () {
-            if (httpRequest.readyState == 4 && httpRequest.status == 200 && httpRequest.status == 304) {
+        var xhr = new XMLHttpRequest();// ie8/9 需用 window.XDomainRequest 兼容
+        xhr.withCredentials = true;
+        xhr.open('GET', "https://api.github.com/repos/lrsgzs/blog/contents/topics", true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.send();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200 && xhr.status == 304) {
                 var res = httpRequest.responseText;
                 let json = JSON.parse(res);
                 consoel.log(json)
             }
-        }
-        httpRequest.send()
+        };
     }catch{
         print("cat")
         content.innerHTML = "<h1>hello</h1>";
