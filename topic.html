@@ -57,7 +57,7 @@ try{
             innetext = innetext + '<a href="/topic.html?id=' + String(i + 1) + '">第' + String(i+1) + '篇文章</a><br>';
         }
         content.innerHTML = innetext;
-        hljs.initHighlightingOnLoad();
+        hljs.initHighlighting()
     }else{
         if (idi <= sm){
             url = json["data"][idi - 1]["_links"]["self"] + "&callback=showwz"
