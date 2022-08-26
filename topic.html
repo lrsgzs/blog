@@ -19,51 +19,18 @@ function GetRequest() {
         </script>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
         <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+var haha = function(meta, data){
+    console.log(meta)
+    console.log(data)
+}
+        </script>
     </head>
     <body>
         <div id="main"></div>
         <script>
 let ages = GetRequest();
 var content = document.getElementById("main");
-var print = console.log
-if (ages.length === 0){
-    content.innerHTML = "<h1>hello</h1>";
-    print("no")
-}else{
-    try{
-        var id = ages["topic_id"];
-        print("topic")
-        var xhr = new XMLHttpRequest();// ie8/9 需用 window.XDomainRequest 兼容
-        xhr.withCredentials = true;
-        xhr.open('GET', "https://api.github.com/repos/lrsgzs/blog/contents/topics", true);
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.send();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200 && xhr.status == 304) {
-                var res = httpRequest.responseText;
-                let json = JSON.parse(res);
-                consoel.log(json)
-            }
-        };
-    }catch{
-        print("cat")
-        content.innerHTML = "<h1>hello</h1>";
-    }
-}
-
-$.ajax({
-  url: "https://api.github.com/repos/lrsgzs/blog/contents/topics",
-  type: 'get',
-  data: {},
-  dataType: 'jsonp',
-  xhrFields: {
-    withCredentials: true
-  },
-  crossDomain: true,
-  jsonpCallback: function(res){
-    print(res)
-  }
-});
 
 // document.getElementById('content').innerHTML =
 // marked.parse('# Marked in the browser\n\nRendered by **marked**.');
