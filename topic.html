@@ -41,7 +41,7 @@ try{
     if (isNaN(idi)){
         content.innerHTML = "<h1>404</h1>"
     }else{
-        if (idi > sm){
+        if (idi <= sm){
             url = json["data"][idi]["_links"]["self"]
             console.log(url)
         }else{
