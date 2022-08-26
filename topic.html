@@ -42,7 +42,7 @@ try{
         content.innerHTML = "<h1>405</h1>"
     }else{
         if (idi <= sm){
-            url = json["data"][idi]["_links"]["self"]
+            url = json["data"][idi - 1]["_links"]["self"]
             console.log(url)
         }else{
             content.innerHTML = "<h1>404</h1>"
