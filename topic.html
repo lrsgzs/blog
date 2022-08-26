@@ -50,7 +50,7 @@ try{
         content.innerHTML = "<h1>405</h1>"
     }else{
         if (idi <= sm){
-            url = json["data"][idi - 1]["_links"]["self"] + "callback=showwz"
+            url = json["data"][idi - 1]["_links"]["self"] + "&callback=showwz"
             var script_dom = document.createElement('script');
             script_dom.src = url;
             script_dom.language = 'javascript';
