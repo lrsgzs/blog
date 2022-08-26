@@ -16,9 +16,10 @@ function GetRequest() {
     }
    return theRequest;
 }
-var haha = function(meta, data){
-    console.log(meta)
-    console.log(data)
+var haha = function(data){
+    console.log(data);
+    var json = JSON.parse(data);
+    var sm = json["data"].length
 }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -32,6 +33,23 @@ var haha = function(meta, data){
         <script>
 let ages = GetRequest();
 var content = document.getElementById("main");
+try{
+    let id = ages["id"]
+    var idi = parseInt(id)
+    if (isNaN(idi)){
+        content.innerHTML = "<h1>404</h1>"
+    }else{
+        if (idi > sm){
+            url = json["data"][idi]["_links"]["self"]
+            console.log(url)
+        }else{
+            content.innerHTML = "<h1>404</h1>"
+        }
+    }
+}catch(err){
+    content.innerHTML = "<h1>Hello!</h1>"
+}
+
 
 // document.getElementById('content').innerHTML =
 // marked.parse('# Marked in the browser\n\nRendered by **marked**.');
