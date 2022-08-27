@@ -10,7 +10,6 @@ document.title = blog_title + " - 主页";
         <script>
 var sm;
 var json;
-var is_not_done = true;
 function GetRequest() {
     const url = location.search;
     let theRequest = new Object();
@@ -32,11 +31,53 @@ var showwz = function(data){
     document.getElementById('main').innerHTML = marked.parse(getDecode(data["data"]["content"]).replaceAll("\r", ""));
     hljs.highlightAll()
 }
+function main_js(){
+    document.getElementById("title").innerHTML = blog_title;
+    var url = gitckurl + "?callback=haha"
+    var script_dom = document.createElement('script');
+    script_dom.src = url;
+    script_dom.language = 'javascript';
+    script_dom.type = 'text/javascript';
+    var head = document.getElementsByTagName('head').item(0);//这个是往本页面动态加载js脚本
+    head.appendChild(script_dom);
+    console.log(url)
+
+    let ages = GetRequest();
+    var content = document.getElementById("main");
+    try{
+        let id = ages["id"]
+        var idi = parseInt(id)
+        if (isNaN(idi)){
+            var innetext = "<p>一共有" + String(sm) + "篇文章</p>";
+            for (var i=0; i < sm; i++){
+                innetext = innetext + '<a href="/topic.html?id=' + String(i + 1) + '">第' + String(i+1) + '篇文章</a><br>';
+            }
+            content.innerHTML = innetext;
+            
+        }else{
+            if (idi <= sm){
+                var url = json["data"][idi - 1]["_links"]["self"] + "&callback=showwz"
+                var script_dom = document.createElement('script');
+                script_dom.src = url;
+                script_dom.language = 'javascript';
+                script_dom.type = 'text/javascript';
+                var head = document.getElementsByTagName('head').item(0);//这个是往本页面动态加载js脚本
+                head.appendChild(script_dom);
+                console.log(url)
+            }else{
+                content.innerHTML = "<h1>404</h1>"
+            }
+        }
+    }catch(err){
+        console.log(err)
+        content.innerHTML = "<h1>Hello!</h1>"
+    }
+}
 var haha = function(data){
     console.log(data);
     json = data;
     sm = json["data"].length
-    is_not_done = false;
+    main_js()
 }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -51,46 +92,7 @@ var haha = function(data){
         <hr width="100%" align="left">
         <div id="main"></div>
         <script>
-document.getElementById("title").innerHTML = blog_title;
-var url = gitckurl + "?callback=haha"
-var script_dom = document.createElement('script');
-script_dom.src = url;
-script_dom.language = 'javascript';
-script_dom.type = 'text/javascript';
-var head = document.getElementsByTagName('head').item(0);//这个是往本页面动态加载js脚本
-head.appendChild(script_dom);
-console.log(url)
 
-let ages = GetRequest();
-var content = document.getElementById("main");
-try{
-    let id = ages["id"]
-    var idi = parseInt(id)
-    if (isNaN(idi)){
-        var innetext = "<p>一共有" + String(sm) + "篇文章</p>";
-        for (var i=0; i < sm; i++){
-            innetext = innetext + '<a href="/topic.html?id=' + String(i + 1) + '">第' + String(i+1) + '篇文章</a><br>';
-        }
-        content.innerHTML = innetext;
-        
-    }else{
-        if (idi <= sm){
-            var url = json["data"][idi - 1]["_links"]["self"] + "&callback=showwz"
-            var script_dom = document.createElement('script');
-            script_dom.src = url;
-            script_dom.language = 'javascript';
-            script_dom.type = 'text/javascript';
-            var head = document.getElementsByTagName('head').item(0);//这个是往本页面动态加载js脚本
-            head.appendChild(script_dom);
-            console.log(url)
-        }else{
-            content.innerHTML = "<h1>404</h1>"
-        }
-    }
-}catch(err){
-    console.log(err)
-    content.innerHTML = "<h1>Hello!</h1>"
-}
 
 // document.getElementById('content').innerHTML =
 // marked.parse('# Marked in the browser\n\nRendered by **marked**.');
