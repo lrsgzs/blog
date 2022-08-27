@@ -43,7 +43,8 @@ function getDecode(str){
       }).join(''));
 }
 var showwz = function(data){
-    document.getElementById('main').innerHTML = marked.parse(getDecode(data["data"]["content"]).replaceAll("\r", "")); 
+    document.getElementById('main').innerHTML = marked.parse(getDecode(data["data"]["content"]).replaceAll("\r", ""));
+    hljs.highlightAll()
 }
 let ages = GetRequest();
 var content = document.getElementById("main");
@@ -56,7 +57,7 @@ try{
             innetext = innetext + '<a href="/topic.html?id=' + String(i + 1) + '">第' + String(i+1) + '篇文章</a><br>';
         }
         content.innerHTML = innetext;
-        setTimeout("hljs.highlightAll()", 2000)
+        
     }else{
         if (idi <= sm){
             url = json["data"][idi - 1]["_links"]["self"] + "&callback=showwz"
