@@ -32,16 +32,6 @@ var showwz = function(data){
     hljs.highlightAll()
 }
 function main_js(){
-    document.getElementById("title").innerHTML = blog_title;
-    var url = gitckurl + "?callback=haha"
-    var script_dom = document.createElement('script');
-    script_dom.src = url;
-    script_dom.language = 'javascript';
-    script_dom.type = 'text/javascript';
-    var head = document.getElementsByTagName('head').item(0);//这个是往本页面动态加载js脚本
-    head.appendChild(script_dom);
-    console.log(url)
-
     let ages = GetRequest();
     var content = document.getElementById("main");
     try{
@@ -92,7 +82,15 @@ var haha = function(data){
         <hr width="100%" align="left">
         <div id="main"></div>
         <script>
-
+document.getElementById("title").innerHTML = blog_title;
+var url = gitckurl + "?callback=haha"
+var script_dom = document.createElement('script');
+script_dom.src = url;
+script_dom.language = 'javascript';
+script_dom.type = 'text/javascript';
+var head = document.getElementsByTagName('head').item(0);//这个是往本页面动态加载js脚本
+head.appendChild(script_dom);
+console.log(url)
 
 // document.getElementById('content').innerHTML =
 // marked.parse('# Marked in the browser\n\nRendered by **marked**.');
