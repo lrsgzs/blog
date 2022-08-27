@@ -54,7 +54,7 @@ function main_js(){
                 var head = document.getElementsByTagName('head').item(0);//这个是往本页面动态加载js脚本
                 head.appendChild(script_dom);
             }else{
-                content.innerHTML = "<h1>404</h1><br><h2>" + page_not_found_text + "</h2>"
+                content.innerHTML = "<h1>404</h1><h2>" + page_not_found_text + "</h2>"
             }
         }
     }catch(err){
