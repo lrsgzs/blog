@@ -10,6 +10,7 @@ document.title = blog_title + " - 主页";
         <script>
 var sm;
 var json;
+var is_not_done = true;
 function GetRequest() {
     const url = location.search;
     let theRequest = new Object();
@@ -22,10 +23,20 @@ function GetRequest() {
     }
    return theRequest;
 }
+function getDecode(str){
+    return decodeURIComponent(atob(str).split('').map(function (c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+}
+var showwz = function(data){
+    document.getElementById('main').innerHTML = marked.parse(getDecode(data["data"]["content"]).replaceAll("\r", ""));
+    hljs.highlightAll()
+}
 var haha = function(data){
     console.log(data);
     json = data;
     sm = json["data"].length
+    is_not_done = false;
 }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -49,15 +60,10 @@ var head = document.getElementsByTagName('head').item(0);//这个是往本页面
 head.appendChild(script_dom);
 console.log(url)
 
-function getDecode(str){
-    return decodeURIComponent(atob(str).split('').map(function (c) {
-          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
+while (is_not_done){
+    console.log("wait...")
 }
-var showwz = function(data){
-    document.getElementById('main').innerHTML = marked.parse(getDecode(data["data"]["content"]).replaceAll("\r", ""));
-    hljs.highlightAll()
-}
+
 let ages = GetRequest();
 var content = document.getElementById("main");
 try{
