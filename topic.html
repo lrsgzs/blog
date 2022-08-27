@@ -51,6 +51,7 @@ var haha = function(data){
         <hr width="100%" align="left">
         <div id="main"></div>
         <script>
+document.getElementById("title").innerHTML = blog_title;
 var url = gitckurl + "?callback=haha"
 var script_dom = document.createElement('script');
 script_dom.src = url;
@@ -59,8 +60,6 @@ script_dom.type = 'text/javascript';
 var head = document.getElementsByTagName('head').item(0);//这个是往本页面动态加载js脚本
 head.appendChild(script_dom);
 console.log(url)
-
-while (is_not_done){}
 
 let ages = GetRequest();
 var content = document.getElementById("main");
@@ -95,9 +94,6 @@ try{
 
 // document.getElementById('content').innerHTML =
 // marked.parse('# Marked in the browser\n\nRendered by **marked**.');
-        </script>
-        <script>
-document.getElementById("title").innerHTML = blog_title;
         </script>
     </body>
 </html>
