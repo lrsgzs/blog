@@ -53,14 +53,13 @@ function main_js(){
                 script_dom.type = 'text/javascript';
                 var head = document.getElementsByTagName('head').item(0);//这个是往本页面动态加载js脚本
                 head.appendChild(script_dom);
-                console.log(url)
             }else{
-                content.innerHTML = "<h1>404</h1>"
+                content.innerHTML = "<h1>404</h1><br><h2>" + page_not_found_text + "</h2>"
             }
         }
     }catch(err){
         console.log(err)
-        content.innerHTML = "<h1>Hello!</h1>"
+        content.innerHTML = "<h1>出错了，请打开f12开发人员工具， 并打开控制台(console)， 把里面的内容发到邮箱liurongshuo2022@outlook.com</h1>"
     }
 }
 var haha = function(data){
@@ -90,7 +89,6 @@ script_dom.language = 'javascript';
 script_dom.type = 'text/javascript';
 var head = document.getElementsByTagName('head').item(0);//这个是往本页面动态加载js脚本
 head.appendChild(script_dom);
-console.log(url)
 
 // document.getElementById('content').innerHTML =
 // marked.parse('# Marked in the browser\n\nRendered by **marked**.');
