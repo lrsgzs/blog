@@ -41,7 +41,7 @@ function main_js(){
         if (isNaN(idi)){
             var innetext = "<p>一共有" + String(sm) + "篇文章</p>";
             for (var i=0; i < sm; i++){
-                innetext = innetext + '<a href="./topic.html?id=' + String(i + 1) + '">' + i["name"] + '</a><br>';
+                innetext = innetext + '<a href="./topic.html?id=' + String(i + 1) + '">' + json["data"][i]["name"] + '</a><br>';
             }
             content.innerHTML = innetext;
             
