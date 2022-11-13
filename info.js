@@ -7,6 +7,6 @@ var blog_title = "刘镕硕的博客";
 // 404页面提示文本
 var page_not_found_text = "页面不见了";
 
-// 文章GitHub仓库api地址
-// 如：https://api.github.com/repos/lrsgzs/blog_topics/contents/topics
-var gitckurl = "https://api.github.com/repos/lrsgzs/blog_topics/contents/topics";
+// 文章GitHub仓库地址
+// 如：用户名/仓库名
+var gitrepos = "https://api.github.com/repos/lrsgzs/blog_topics/contents/topics";

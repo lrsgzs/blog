@@ -2,74 +2,12 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>刘镕硕的博客 - 文章</title>
+        <title>博客 - 文章</title>
         <link rel="icon" href="./favicon.ico">
+
         <script src="./info.js"></script>
-        <script>
-document.title = blog_title + " - 文章";
-        </script>
-        <script>
-var sm;
-var json;
-function GetRequest() {
-    const url = location.search;
-    let theRequest = new Object();
-    if (url.indexOf("?") != -1) {
-        let str = url.substr(1);
-        strs = str.split("&");
-        for(let i = 0; i < strs.length; i ++) {
-           theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
-        }
-    }
-   return theRequest;
-}
-function getDecode(str){
-    return decodeURIComponent(atob(str).split('').map(function (c) {
-          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
-}
-var showwz = function(data){
-    document.getElementById('main').innerHTML = marked.parse(getDecode(data["data"]["content"]).replaceAll("\r", ""));
-    hljs.highlightAll()
-}
-function main_js(){
-    let ages = GetRequest();
-    var content = document.getElementById("main");
-    try{
-        let id = ages["id"]
-        var idi = parseInt(id)
-        if (isNaN(idi)){
-            var innetext = "<p>一共有" + String(sm) + "篇文章</p>";
-            for (var i=0; i < sm; i++){
-                innetext = innetext + '<a href="./topic.html?id=' + String(i + 1) + '">' + json["data"][i]["name"] + '</a><br>';
-            }
-            content.innerHTML = innetext;
-            
-        }else{
-            if (idi <= sm){
-                var url = json["data"][idi - 1]["_links"]["self"] + "&callback=showwz"
-                var script_dom = document.createElement('script');
-                script_dom.src = url;
-                script_dom.language = 'javascript';
-                script_dom.type = 'text/javascript';
-                var head = document.getElementsByTagName('head').item(0);//这个是往本页面动态加载js脚本
-                head.appendChild(script_dom);
-            }else{
-                content.innerHTML = "<h1>404</h1><h2>" + page_not_found_text + "</h2>"
-            }
-        }
-    }catch(err){
-        console.log(err)
-        content.innerHTML = "<h1>出错了，请打开f12开发人员工具， 并打开控制台(console)， 把里面的内容发到邮箱liurongshuo2022@outlook.com</h1>"
-    }
-}
-var haha = function(data){
-    console.log(data);
-    json = data;
-    sm = json["data"].length
-    main_js()
-}
-        </script>
+        <script src="./blog_assis.js"></script>
+
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
         <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
         <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.6.0/languages/python.min.js"></script>
@@ -78,18 +16,14 @@ var haha = function(data){
         <script>hljs.initHighlightingOnLoad();</script>
     </head>
     <body>
-        <span id="title">刘镕硕的博客</span> | <span><a href="/">主页</a></span> | <span><a href="/topic.html">文章</a></span>
+        <span id="title">博客</span> | <span><a href="/">主页</a></span> | <span><a href="/topic.html">文章</a></span>
         <hr width="100%" align="left">
         <div id="main"></div>
+
+        <script src="./blog_main.js"></script>
         <script>
+document.title = blog_title + " - 文章";
 document.getElementById("title").innerHTML = blog_title;
-var url = gitckurl + "?callback=haha"
-var script_dom = document.createElement('script');
-script_dom.src = url;
-script_dom.language = 'javascript';
-script_dom.type = 'text/javascript';
-var head = document.getElementsByTagName('head').item(0);//这个是往本页面动态加载js脚本
-head.appendChild(script_dom);
         </script>
     </body>
 </html>
