@@ -32,7 +32,7 @@ var showwz = function(data){
 }
 
 // 主js
-function main_js(){
+function main_js(sm){
     let ages = GetRequest();  // 获取数据
     var content = document.getElementById("main");  // 获取填充内容的div
 
@@ -85,5 +85,5 @@ var haha = function(data){
     console.log(data);  // 记录数据，方便检查
     json = data;  // 方便使用数据
     sm = json["data"].length;  // 获取位置数量
-    main_js();  // 运行主js
+    main_js(sm);  // 运行主js
 }

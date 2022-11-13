@@ -9,4 +9,4 @@ var page_not_found_text = "页面不见了";
 
 // 文章GitHub仓库地址
 // 如：用户名/仓库名
-var gitrepos = "https://api.github.com/repos/lrsgzs/blog_topics/contents/topics";
+var gitrepos = "lrsgzs/blog_topics";
